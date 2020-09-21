@@ -397,3 +397,26 @@ testWebP(function (support) {
 		document.querySelector('body').classList.add('_no-webp');
 	}
 });
+
+
+let menuShow = document.querySelectorAll('.page-menu__parent');
+
+for (let i = 0; i < menuShow.length; i++){
+	let menuShowActive = menuShow[i];
+	menuShowActive.addEventListener('mouseenter', function(e){
+		menuShowActive.classList.add('active');
+	});
+	menuShowActive.addEventListener('mouseleave', function(e){
+		menuShowActive.classList.remove('active');
+	});
+}
+
+let menuPageBurger = document.querySelector('.page-menu__burger');
+
+menuPageBurger.addEventListener("click", function(e){
+	menuPageBurger.classList.toggle('active');
+});
+
+$('.page-menu__burger').click(function(){
+	$('.page-menu__body').slideToggle();
+});
