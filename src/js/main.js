@@ -412,6 +412,7 @@ for (let i = 0; i < menuShow.length; i++){
 }
 
 let menuPageBurger = document.querySelector('.page-menu__burger');
+let searchSelect = document.querySelector('.search-page__title');
 
 menuPageBurger.addEventListener("click", function(e){
 	menuPageBurger.classList.toggle('active');
@@ -420,3 +421,31 @@ menuPageBurger.addEventListener("click", function(e){
 $('.page-menu__burger').click(function(){
 	$('.page-menu__body').slideToggle();
 });
+
+$('.search-page__title').click(function(){
+	$(searchSelect).toggleClass('active');
+	$('.categories-search').slideToggle(500);
+});
+
+
+let checkboxCategories = document.querySelectorAll('.categories-search__checkbox');
+
+
+for (let i = 0; i < checkboxCategories.length; i++){
+	const checkboxCategory = checkboxCategories[i];
+
+	checkboxCategory.addEventListener('change', function(e) {
+		checkboxCategory.classList.toggle('active');
+
+		let checkboxActiveCategories = document.querySelectorAll(".categories-search__checkbox.active");
+
+		if (checkboxActiveCategories.length > 0){
+			searchSelect.classList.add('categories');
+			let searchQuantity = document.querySelector('.search-page__quantity');
+			searchQuantity.innerHTML = searchQuantity.getAttribute('data-text') + ' ' + checkboxActiveCategories.length;
+		} else {
+			searchSelect.classList.add('categories');
+		}
+	});
+}
+

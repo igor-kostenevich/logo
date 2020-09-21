@@ -280,25 +280,25 @@ function forms(){
 		maskclear($(this));
 	});
 	//CHECK
-	$.each($('.check'), function(index, val) {
-		if($(this).find('input').prop('checked')==true){
-			$(this).addClass('active');
-		}
-	});
-	$('body').off('click','.check',function(event){});
-	$('body').on('click','.check',function(event){
-		if(!$(this).hasClass('disable')){
-				var target = $(event.target);
-			if (!target.is("a")){
-					$(this).toggleClass('active');
-				if($(this).hasClass('active')){
-					$(this).find('input').prop('checked', true);
-				}else{
-					$(this).find('input').prop('checked', false);
-				}
-			}
-		}
-	});
+	// $.each($('.check'), function(index, val) {
+	// 	if($(this).find('input').prop('checked')==true){
+	// 		$(this).addClass('active');
+	// 	}
+	// });
+	// $('body').off('click','.check',function(event){});
+	// $('body').on('click','.check',function(event){
+	// 	if(!$(this).hasClass('disable')){
+	// 			var target = $(event.target);
+	// 		if (!target.is("a")){
+	// 				$(this).toggleClass('active');
+	// 			if($(this).hasClass('active')){
+	// 				$(this).find('input').prop('checked', true);
+	// 			}else{
+	// 				$(this).find('input').prop('checked', false);
+	// 			}
+	// 		}
+	// 	}
+	// });
 
 	//OPTION
 	$.each($('.option.active'), function(index, val) {
@@ -463,14 +463,14 @@ function formValidate(input){
 			removeError(input);
 		}
 	}
-	if(input.attr('type')=='checkbox'){
-		if(input.prop('checked') == true){
-			input.removeClass('err').parent().removeClass('err');
-		}else{
-			er++;
-			input.addClass('err').parent().addClass('err');
-		}
-	}
+	// if(input.attr('type')=='checkbox'){
+	// 	if(input.prop('checked') == true){
+	// 		input.removeClass('err').parent().removeClass('err');
+	// 	}else{
+	// 		er++;
+	// 		input.addClass('err').parent().addClass('err');
+	// 	}
+	// }
 	if(input.hasClass('name')){
 		if(!(/^[А-Яа-яa-zA-Z-]+( [А-Яа-яa-zA-Z-]+)$/.test(input.val()))){
 				er++;
@@ -583,6 +583,85 @@ function searchselectreset() {
 		}
 	});
 }
+
+
+function form_validate_input(input) {
+	let error = 0;
+	let input_g_value = input.getAttribute('data-value');
+
+	if (input.getAttribute("name") == "email" || input.classList.contains("_email")) {
+		if (input.value != input_g_value) {
+			let em = input.value.replace(" ", "");
+			input.value = em;
+		}
+		if (email_test(input) || input.value == input_g_value) {
+			form_add_error(input);
+			error++;
+		} else {
+			form_remove_error(input);
+		}
+	} else if (input.getAttribute("type") == "checkbox" && input.checked == false) {
+		form_add_error(input);
+		error++;
+	} else {
+		if (input.value == '' || input.value == input_g_value) {
+			form_add_error(input);
+			error++;
+		} else {
+			form_remove_error(input);
+		}
+	}
+	return error;
+}
+function form_add_error(input) {
+	input.classList.add('_error');
+	input.parentElement.classList.add('_error');
+
+	let input_error = input.parentElement.querySelector('.form__error');
+	if (input_error) {
+		input.parentElement.removeChild(input_error);
+	}
+	let input_error_text = input.getAttribute('data-error');
+	if (input_error_text && input_error_text != '') {
+		input.parentElement.insertAdjacentHTML('beforeend', '<div class="form__error">' + input_error_text + '</div>');
+	}
+}
+function form_remove_error(input) {
+	input.classList.remove('_error');
+	input.parentElement.classList.remove('_error');
+
+	let input_error = input.parentElement.querySelector('.form__error');
+	if (input_error) {
+		input.parentElement.removeChild(input_error);
+	}
+}
+
+function form_clean(form) {
+	let inputs = form.querySelectorAll('input,textarea');
+	for (let index = 0; index < inputs.length; index++) {
+		const el = inputs[index];
+		el.parentElement.classList.remove('_focus');
+		el.classList.remove('_focus');
+		el.value = el.getAttribute('data-value');
+	}
+	let checkboxes = form.querySelectorAll('.checkbox__input');
+	if (checkboxes.length > 0) {
+		for (let index = 0; index < checkboxes.length; index++) {
+			const checkbox = checkboxes[index];
+			checkbox.checked = false;
+		}
+	}
+	let selects = form.querySelectorAll('select');
+	if (selects.length > 0) {
+		for (let index = 0; index < selects.length; index++) {
+			const select = selects[index];
+			const select_default_value = select.getAttribute('data-default');
+			select.value = select_default_value;
+			select_item(select);
+		}
+	}
+}
+
 var isMobile = {
 	Android: function () {
 		return navigator.userAgent.match(/Android/i);
@@ -997,6 +1076,7 @@ for (let i = 0; i < menuShow.length; i++){
 }
 
 let menuPageBurger = document.querySelector('.page-menu__burger');
+let searchSelect = document.querySelector('.search-page__title');
 
 menuPageBurger.addEventListener("click", function(e){
 	menuPageBurger.classList.toggle('active');
@@ -1005,6 +1085,34 @@ menuPageBurger.addEventListener("click", function(e){
 $('.page-menu__burger').click(function(){
 	$('.page-menu__body').slideToggle();
 });
+
+$('.search-page__title').click(function(){
+	$(searchSelect).toggleClass('active');
+	$('.categories-search').slideToggle(500);
+});
+
+
+let checkboxCategories = document.querySelectorAll('.categories-search__checkbox');
+
+
+for (let i = 0; i < checkboxCategories.length; i++){
+	const checkboxCategory = checkboxCategories[i];
+
+	checkboxCategory.addEventListener('change', function(e) {
+		checkboxCategory.classList.toggle('active');
+
+		let checkboxActiveCategories = document.querySelectorAll(".categories-search__checkbox.active");
+
+		if (checkboxActiveCategories.length > 0){
+			searchSelect.classList.add('categories');
+			let searchQuantity = document.querySelector('.search-page__quantity');
+			searchQuantity.innerHTML = searchQuantity.getAttribute('data-text') + ' ' + checkboxActiveCategories.length;
+		} else {
+			searchSelect.classList.add('categories');
+		}
+	});
+}
+
 
 function map(n){
 	google.maps.Map.prototype.setCenterWithOffset= function(latlng, offsetX, offsetY) {

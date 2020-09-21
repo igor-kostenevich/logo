@@ -517,10 +517,27 @@ body.ie .ibg img {
 }
 
 .btn {
-  height: 50px;
-  color: #fff;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 39px;
   font-size: 15px;
-  padding: 0px 50px;
+  padding: 0px 25px;
+  background-color: #f68038;
+  -webkit-transition: all .2s ease 0s;
+  -o-transition: all .2s ease 0s;
+  transition: all .2s ease 0s;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 18px;
+  text-transform: uppercase;
 }
 
 .btn.fw {
@@ -640,32 +657,56 @@ textarea.input {
   height: 100px;
 }
 
-.check {
+.checkbox {
   position: relative;
-  padding-left: 25px;
-  color: #5f5f5f;
-  line-height: 18px;
+}
+
+.checkbox__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.checkbox__text {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  line-height: calc(20 / 16);
   cursor: pointer;
 }
 
-.check input {
-  display: none;
-}
-
-.check:before {
-  content: '';
-  height: 50px;
-  border: 2px solid #ccc;
+.checkbox__text:before {
+  content: "";
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 0px 14px 0px 0px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20px;
+          flex: 0 0 20px;
   left: 0;
   top: 0;
-  width: 18px;
+  width: 20px;
   height: 18px;
-  border: 1px solid #a3a3a3;
-  position: absolute;
+  background: #fff;
+  border: 1px solid #a7a9ac;
 }
 
-.check.active:before {
-  background: url("../img/icons/check.png") center no-repeat;
+.checkbox a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.checkbox._error .checkbox__text:before {
+  border: 1px solid #ee1212;
 }
 
 .option {
@@ -1498,6 +1539,150 @@ body.lock {
   padding: 0px 15px;
 }
 
+.search-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.search-page__select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f3f3f3;
+}
+
+.search-page__title {
+  color: #666;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  padding: 0px 14px;
+}
+
+.search-page__title span {
+  border-bottom: 1px dashed;
+  margin: 0px 13px;
+}
+
+.search-page__title span:last-child {
+  display: none;
+}
+
+.search-page__title:before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  background: url("../../dist/img/icons/content/search_icon.png") 0 0 no-repeat;
+}
+
+.search-page__title:after {
+  content: '';
+  -webkit-transition: all .2s ease 0s;
+  -o-transition: all .2s ease 0s;
+  transition: all .2s ease 0s;
+  width: 10px;
+  height: 10px;
+  background: url("../../dist/img/icons/content/arrow_down_search.png") 0 0 no-repeat;
+}
+
+.search-page__title.categories span {
+  display: none;
+}
+
+.search-page__title.categories span:last-child {
+  display: block;
+}
+
+.search-page__title.active:after {
+  -webkit-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.search-page__categories {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.search-page__input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  border-top: 2px solid #f2f2f2;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+.search-page__input input {
+  height: 100%;
+}
+
+.categories-search {
+  display: none;
+  background-color: #fff;
+  border: 1px solid #f3f3f3;
+}
+
+.categories-search:after {
+  content: '';
+  background-color: #f68038;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}
+
+.categories-search__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.categories-search__column {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 33.333%;
+          flex: 0 1 33.333%;
+  padding: 27px 40px;
+  border-right: 1px solid #f3f3f3;
+}
+
+.categories-search__column:last-child {
+  border: 0;
+}
+
+.categories-search__list li {
+  margin: 0px 0px 20px 0px;
+}
+
+.categories-search__list li:last-child {
+  margin: 0px 0px 0px 0px;
+}
+
+.categories-search__checkbox .checkbox__input:checked + .checkbox__text {
+  color: #f68038;
+}
+
+.categories-search__checkbox .checkbox__text {
+  color: #999;
+}
+
+.categories-search__checkbox .checkbox__text::before {
+  display: none;
+}
+
 @media (min-width: 767.98px) {
   .top-header__column:nth-child(2) {
     -ms-flex-item-align: start;
@@ -1519,6 +1704,14 @@ body.lock {
 @media (min-width: 992px) {
   .item-product__title:hover {
     text-decoration: underline;
+  }
+
+  .btn:hover {
+    background-color: #e2681c;
+  }
+
+  .checkbox a:hover {
+    text-decoration: none;
   }
 
   .menu__link:hover {
@@ -1806,8 +1999,6 @@ body.lock {
 
 .webp .item-product__add{ background: url(../../dist/img/cart_gray.webp) 0 0 no-repeat; }
 
-.webp .check.active:before{ background: url(../img/icons/check.webp) center no-repeat; }
-
 .webp .option.active:before{ background: url(../img/icons/option.webp) center no-repeat; }
 
 .webp .header{ background: #fff url(../../dist/img/bg_header.webp) top no-repeat; }
@@ -1829,6 +2020,10 @@ body.lock {
 .webp .page-menu{ background: url(../../dist/img/bg-menu.webp) top no-repeat; }
 
 .webp .page-menu__parent .page-menu__link:after{ background: url(../../dist/img/icons/content/arrow-menu.webp) 0 0 no-repeat; }
+
+.webp .search-page__title:before{ background: url(../../dist/img/icons/content/search_icon.webp) 0 0 no-repeat; }
+
+.webp .search-page__title:after{ background: url(../../dist/img/icons/content/arrow_down_search.webp) 0 0 no-repeat; }
 
 @media (max-width: 767.98px){
 
