@@ -103,6 +103,20 @@
 	}
 }
 
+.side-title {
+	color: #dadada;
+	font-family: "UniSans";
+	font-size: 30px;
+	text-transform: uppercase;
+	letter-spacing: 0.75px;
+
+	@media (min-width: 992px) {
+		&:hover {
+			color: #1ab9ce;
+		}
+	}
+}
+
 
 
 
