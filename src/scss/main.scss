@@ -120,6 +120,14 @@ body.lock {
 	&__brands {
 		margin: 0px 0px 32px 0px;
 	}
+
+	// .content__text
+	&__text {
+		margin: 0px 0px 38px 0px;
+	}
+
+	// .content__info-menu
+	&__info-menu {}
 }
 
 // PAGE MENU AND SUBMENU ========================================
@@ -966,7 +974,8 @@ body.lock {
 		// .brands-slider__arrow_prev
 		&_prev {
 			left: 10px;
-			@media (min-width: $md1+px){
+
+			@media (min-width: $md1+px) {
 				left: 0;
 			}
 		}
@@ -974,9 +983,119 @@ body.lock {
 		// .brands-slider__arrow_next
 		&_next {
 			right: 10px;
-			@media (min-width: $md1+px){
+
+			@media (min-width: $md1+px) {
 				right: 0;
 			}
+		}
+	}
+}
+
+// ==================================================================================
+
+// Text ==================================================================================
+
+.text-block {
+
+	// .text-block__container
+	&__container {
+		@media (max-width: $md2+px){
+		   padding: 0;
+		}
+		@media (max-width: $md3+px){
+		   padding: 0;
+		}
+	}
+
+	// .text-block__body
+	&__body {
+		padding: 45px 35px 15px 35px;
+		background: url("../../dist/img/bg-text.jpg") 0 0 repeat;
+		@media (max-width: $md2+px){
+		   padding: 25px 20px 15px 20px;
+		}
+	}
+
+	// .text-block__title
+	&__title {
+		color: #22b7ca;
+		font-family: "UniSans";
+		font-size: 30px;
+		text-transform: uppercase;
+		letter-spacing: 0.75px;
+		margin: 0px 0px 28px 0px;
+	}
+
+	// .text-block__row
+	&__row {
+		@media (min-width: $md2+px) {
+			display: flex;
+			margin: 0px -30px;
+		}
+	}
+
+	// .text-block__column
+	&__column {
+		color: #ffffff;
+		position: relative;
+		margin: 0px 0px 30px 0px;
+
+		@media (min-width: $md2+px) {
+			padding: 0 30px;
+			flex: 0 1 50%;
+		}
+
+		p {
+			font-size: 12px;
+			line-height: 20px;
+			letter-spacing: 0.3px;
+			margin: 0px 0px 20px 0px;
+		}
+	}
+
+	// .text-block__label
+	&__label {
+		text-transform: uppercase;
+		font-weight: 900;
+		margin: 0px 0px 5px 0px;
+	}
+
+	// .text-block__list
+	&__list {
+		li {
+			font-size: 12px;
+			line-height: 20px;
+			letter-spacing: 0.3px;
+			margin: 0px 0px 5px 0px;
+
+			&:last-child {
+				margin: 0px 0px 0px 0px;
+			}
+
+			&:before {
+				content: '';
+				display: inline-block;
+				height: 11px;
+				width: 11px;
+				margin: 0px 17px 0px 7px;
+				background: url("../../dist/img/icons/text-block-arr.png") left 1px no-repeat;
+			}
+
+			@media (max-width: $md1+px) {
+				br {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&__image {
+		position: absolute;
+		right: -80px;
+		bottom: -260px;
+
+		@media (max-width: $md1+px) {
+			display: none;
 		}
 	}
 }
@@ -984,7 +1103,86 @@ body.lock {
 
 // ==================================================================================
 
+// INFO MENU ==================================================================================
 
+.info-menu {
+	border-top: 3px dashed #dadada;
+	border-bottom: 3px dashed #dadada;
+	padding: 10px 0;
+
+	// .info-menu__container
+	&__container {}
+
+	// .info-menu__body
+	&__body {
+		display: inline-block;
+		@media (max-width: $md3+px){
+		   display: flex;
+		}
+	}
+
+	// .info-menu__line
+	&__line {
+		display: flex;
+		padding: 15px;
+		align-items: center;
+		border-bottom: 1px solid #b0b0b0;
+
+		&:last-child {
+			border: 0;
+		}
+		@media (max-width: $md3+px){
+		   flex: 0 1 50%;
+		   display: block;
+		   border: 0;
+		}
+	}
+
+	// .info-menu__label
+	&__label {
+		color: #333;
+		font-weight: 900;
+		margin: 0px 35px 0px 0px;
+		@media (max-width: $md3+px){
+		   margin: 0px 0px 10px 0px;
+		}
+	}
+
+	// .info-menu__list
+	&__list {
+		@media (min-width: $md3+px){
+			display: flex;
+			align-items: center;
+		}
+
+		li {
+			margin: 0px 30px 0px 0px;
+			@media (max-width: $md3+px){
+				margin: 0px 0px 10px 0px;
+				&:last-child {
+					margin: 0px 0px 0px 0px;
+				}
+			}
+		}
+	}
+
+	// .info-menu__link
+	&__link {
+		color: #1ab9ce;
+		font-size: 12;
+		font-weight: 300;
+
+		@media (min-width: 992px) {
+			&:hover {
+				color: #333;
+
+			}
+		}
+	}
+}
+
+
+// ==================================================================================
 
 
 //</ОСНОВНОЙ БЛОК>===========================================================================================================
