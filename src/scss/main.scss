@@ -61,6 +61,7 @@ body.lock {
 
 	// .content__container
 	&__container {
+
 		// padding: 0px 0px 20px 0px;
 		@media (min-width: $md2+px) {
 			display: flex;
@@ -114,6 +115,11 @@ body.lock {
 
 	// .content__products
 	&__products {}
+
+	// .content__brands
+	&__brands {
+		margin: 0px 0px 32px 0px;
+	}
 }
 
 // PAGE MENU AND SUBMENU ========================================
@@ -869,10 +875,12 @@ body.lock {
 
 .products-slider {
 	margin: 0px 0px 20px 0px;
+
 	// .products-slider__header
 	&__header {
 		margin: 0px 0px 30px 0px;
-		@media (min-width: $md3+px){
+
+		@media (min-width: $md3+px) {
 			display: flex;
 		}
 	}
@@ -885,8 +893,9 @@ body.lock {
 		font-size: 36px;
 		text-transform: uppercase;
 		letter-spacing: 0.9px;
-		@media (max-width: $md3+px){
-		   margin: 0px 0px 30px 0px;
+
+		@media (max-width: $md3+px) {
+			margin: 0px 0px 30px 0px;
 		}
 	}
 
@@ -899,44 +908,12 @@ body.lock {
 	// .products-slider__items
 	&__items {}
 
-	// .products-slider__arrow
-	&__arrow {
-		background: url("../../dist/img/icons/sl-arrow.svg") 0 0 no-repeat;
-		width: 33px;
-		height: 30px;
-		cursor: pointer;
-
-		@media (min-width: 992px){
-			&:hover {
-				background: url("../../dist/img/icons/sl-arrow-o.svg") 0 0 no-repeat;
-			}
-		}
-
-		// .products-slider__arrow_prev
-		&_prev {
-			transform: rotate(-180deg);
-			@media (min-width: 992px){
-				&:hover {
-					transform: rotate(0deg);
-				}
-			}
-		}
-
-		// .products-slider__arrow_next
-		&_next {
-			@media (min-width: 992px){
-				&:hover {
-					transform: rotate(-180deg);
-				}
-			}
-		}
-	}
-
 	// .products-slider__info
 	&__info-pagination {
 		padding: 0px 20px;
 		color: #999;
 		font-weight: 500;
+
 		.slick-pagination-current {
 			color: #333;
 			font-size: 30px;
@@ -945,14 +922,67 @@ body.lock {
 	}
 
 	// .products-slider__items
-	&__items {
-		
+	&__items {}
+}
+
+// BRANDS SLIDER ==================================================================================
+
+.brands-slider {
+	border-top: 3px dashed #dadada;
+	border-bottom: 3px dashed #dadada;
+	padding: 25px 0;
+
+	// .brands-slider__container
+	&__container {
+		position: relative;
+	}
+
+	// .brands-slider__body
+	&__body {
+		padding: 0px 40px;
+	}
+
+	// .brands-slider__slide
+	&__slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			max-width: 100%;
+			cursor: pointer;
+		}
+	}
+
+	// .brands-slider__arrows
+	&__arrows {}
+
+	// .brands-slider__arrow
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		margin: -15px 0px 0px 0px;
+
+		// .brands-slider__arrow_prev
+		&_prev {
+			left: 10px;
+			@media (min-width: $md1+px){
+				left: 0;
+			}
+		}
+
+		// .brands-slider__arrow_next
+		&_next {
+			right: 10px;
+			@media (min-width: $md1+px){
+				right: 0;
+			}
+		}
 	}
 }
 
 
-
-
+// ==================================================================================
 
 
 

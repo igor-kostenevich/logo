@@ -397,6 +397,19 @@ h6 {
   font-weight: 900;
 }
 
+.arrow-icon {
+  background: url("../../dist/img/icons/sl-arrow.svg") 0 0 no-repeat;
+  width: 33px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.arrow-icon_prev {
+  -webkit-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
 .side-title {
   color: #dadada;
   font-family: "UniSans";
@@ -1564,6 +1577,10 @@ body.lock {
   margin: 0px 0px 0px 0px;
 }
 
+.content__brands {
+  margin: 0px 0px 32px 0px;
+}
+
 .page-menu {
   position: relative;
   background: url("../../dist/img/bg-menu.png") top repeat;
@@ -2158,19 +2175,6 @@ body.lock {
           align-items: center;
 }
 
-.products-slider__arrow {
-  background: url("../../dist/img/icons/sl-arrow.svg") 0 0 no-repeat;
-  width: 33px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.products-slider__arrow_prev {
-  -webkit-transform: rotate(-180deg);
-      -ms-transform: rotate(-180deg);
-          transform: rotate(-180deg);
-}
-
 .products-slider__info-pagination {
   padding: 0px 20px;
   color: #999;
@@ -2181,6 +2185,51 @@ body.lock {
   color: #333;
   font-size: 30px;
   font-weight: 900;
+}
+
+.brands-slider {
+  border-top: 3px dashed #dadada;
+  border-bottom: 3px dashed #dadada;
+  padding: 25px 0;
+}
+
+.brands-slider__container {
+  position: relative;
+}
+
+.brands-slider__body {
+  padding: 0px 40px;
+}
+
+.brands-slider__slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.brands-slider__slide img {
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.brands-slider__arrow {
+  position: absolute;
+  top: 50%;
+  margin: -15px 0px 0px 0px;
+}
+
+.brands-slider__arrow_prev {
+  left: 10px;
+}
+
+.brands-slider__arrow_next {
+  right: 10px;
 }
 
 @media (min-width: 767.98px) {
@@ -2280,6 +2329,22 @@ body.lock {
     opacity: 0;
   }
 
+  .arrow-icon:hover {
+    background: url("../../dist/img/icons/sl-arrow-o.svg") 0 0 no-repeat;
+  }
+
+  .arrow-icon_next:hover {
+    -webkit-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+
+  .arrow-icon_prev:hover {
+    -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
   .side-title:hover {
     color: #1ab9ce;
   }
@@ -2327,21 +2392,15 @@ body.lock {
   .reviews-content__item:hover .reviews-content__body:before {
     color: #64deee;
   }
+}
 
-  .products-slider__arrow:hover {
-    background: url("../../dist/img/icons/sl-arrow-o.svg") 0 0 no-repeat;
+@media (min-width: 1182px) {
+  .brands-slider__arrow_prev {
+    left: 0;
   }
 
-  .products-slider__arrow_prev:hover {
-    -webkit-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-
-  .products-slider__arrow_next:hover {
-    -webkit-transform: rotate(-180deg);
-        -ms-transform: rotate(-180deg);
-            transform: rotate(-180deg);
+  .brands-slider__arrow_next {
+    right: 0;
   }
 }
 
