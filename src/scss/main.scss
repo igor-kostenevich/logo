@@ -6,6 +6,7 @@
 @import "_popup";
 @import "_fonts";
 @import "header";
+@import "footer";
 
 
 //<Подключаем шрифты>=======================================================================================
@@ -127,7 +128,10 @@ body.lock {
 	}
 
 	// .content__info-menu
-	&__info-menu {}
+	&__info-menu {
+		margin: 0px 0px 38px 0px;
+	}
+	
 }
 
 // PAGE MENU AND SUBMENU ========================================
