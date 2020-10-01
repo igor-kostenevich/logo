@@ -32,7 +32,8 @@
 	font-weight: 900;
 	line-height: 18px;
 	text-transform: uppercase;
-	@media (min-width: 992px){
+
+	@media (min-width: 992px) {
 		&:hover {
 			background-color: #e2681c;
 		}
@@ -152,12 +153,13 @@ textarea {
 	display: block;
 	padding: 0px 25px;
 	font-size: 15px;
-	height: 100%;
+	border: 1px solid #dadada;
+	background-color: #fff;
+	height: 30px;
+
 	&.focus {}
 
-	&.err {
-		
-	}
+	&.err {}
 }
 
 textarea.input {
@@ -169,37 +171,9 @@ textarea.input {
 //</INPUT>====================================================================================================
 
 //<CHECK>====================================================================================================
-// .check {
-// 	position: relative;
-// 	padding-left: 25px;
-// 	color: #5f5f5f;
-// 	line-height: 18px;
-// 	cursor: pointer;
-
-// 	input {
-// 		display: none;
-// 	}
-// 	&:before {
-// 		content: '';
-// 		height: 50px;
-// 		border: 2px solid #ccc;
-// 		left: 0;
-// 		top: 0;
-// 		width: 18px;
-// 		height: 18px;
-// 		border: 1px solid #a3a3a3;
-// 		position: absolute;
-// 	}
-
-// 	&.active {
-// 		&:before {
-// 			background: url('../img/icons/check.png') center no-repeat;
-// 		}
-// 	}
-// }
-
 .checkbox {
 	position: relative;
+
 	// .checkbox__input
 	&__input {
 		position: absolute;
@@ -207,10 +181,12 @@ textarea.input {
 		height: 0;
 		opacity: 0;
 		visibility: hidden;
-		&:checked + .checkbox__text:before {
+
+		&:checked+.checkbox__text:before {
 			// background: #fff url("../../dist/img/icons/check.svg") center no-repeat;
 		}
 	}
+
 	// .checkbox__text
 	&__text {
 		display: inline-flex;
@@ -221,6 +197,7 @@ textarea.input {
 		letter-spacing: -0.3px;
 		line-height: calc(20 / 16);
 		cursor: pointer;
+
 		&:before {
 			content: "";
 			align-self: flex-start;
@@ -234,15 +211,18 @@ textarea.input {
 			border: 1px solid #a7a9ac;
 		}
 	}
+
 	a {
 		color: #fff;
 		text-decoration: underline;
+
 		@media (min-width: 992px) {
 			&:hover {
 				text-decoration: none;
 			}
 		}
 	}
+
 	&._error {
 		.checkbox__text {
 			&:before {
@@ -395,23 +375,15 @@ textarea.input {
 //</QUANTITY>====================================================================================================
 
 //<RANGE>====================================================================================================
-.category-params-item-price {}
+.price-filter {}
 
-.category-params-item-price-table {
-	margin-bottom: 25px;
+.price-filter-table {
+	// margin-bottom: 25px;
 
 	.cell {
 		&:first-child {
 			padding-right: 15px;
 			position: relative;
-
-			&:after {
-				content: '-';
-				position: absolute;
-				right: -4px;
-				top: 8px;
-				font-size: 20px;
-			}
 		}
 
 		&:last-child {
@@ -419,9 +391,6 @@ textarea.input {
 		}
 
 		input {
-			height: 37px;
-			border: 2px solid #393939;
-			background-color: #ffffff;
 			text-align: center;
 			font-size: 12px;
 			color: #393939;
@@ -431,39 +400,53 @@ textarea.input {
 	}
 }
 
-.category-params-item-price-range {
+.price-filter-range {
 	margin: 0 12px 40px 12px;
-	background-color: #c9cecf;
-	height: 2px;
+	background-color: #eaeaea;
+	height: 4px;
 	position: relative;
 
 	.ui-slider-range {
-		background-color: #000;
-		height: 2px;
+		background-color: #ffcda5;
+		height: 4px;
 		position: relative;
 	}
 
 	.ui-slider-handle {
 		width: 23px;
-		height: 28px;
-		border: 3px solid #fbfbfb;
-		background-color: #ea5922;
+		height: 23px;
+		background-color: #ffffff;
+		border: 1px solid #f68038;
+		border-radius: 50%;
 		display: block;
 		position: absolute;
-		top: -14px;
+		top: -10px;
 		margin-left: -12px;
 		cursor: pointer;
 
+		&:before {
+			content: '';
+			position: absolute;
+			top: 3px;
+			left: 3px;
+			width: 15px;
+			height: 15px;
+			background-color: #f68038;
+			border-radius: 50%;
+		}
+
 		span {
 			position: absolute;
-			bottom: -18px;
+			bottom: -35px;
 			left: 50%;
 			width: 50px;
 			text-align: center;
-			font-size: 10px;
 			margin-left: -25px;
-			font-weight: 500;
-			color: #94a6aa;
+			color: #999999;
+			font-family: 'Roboto';
+			font-size: 12px;
+			font-weight: 300;
+			line-height: 30px;
 		}
 	}
 }
@@ -532,4 +515,4 @@ textarea.input {
 	color: #888;
 }
 
-//</RANGE>====================================================================================================
+// </RANGE>====================================================================================================

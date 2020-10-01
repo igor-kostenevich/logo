@@ -356,12 +356,12 @@ function forms(){
 		return false;
 	});
 	//RANGE
-	if($("#range" ).length>0){
+if($("#range" ).length>0){
 		$("#range" ).slider({
 			range: true,
 			min: 0,
-			max: 5000,
-			values: [0, 5000],
+			max:  200000,
+			values: [0, 200000],
 			slide: function( event, ui ){
 				$('#rangefrom').val(ui.values[0]);
 				$('#rangeto').val(ui.values[1]);
@@ -379,9 +379,12 @@ function forms(){
 		$('#rangefrom').val($( "#range" ).slider( "values", 0 ));
 		$('#rangeto').val($( "#range" ).slider( "values", 1 ));
 
-		$("#range" ).find('.ui-slider-handle').eq(0).html('<span>'+$( "#range" ).slider( "option","min")+'</span>');
+	    $("#range" ).find('.ui-slider-handle').eq(0).html('<span>'+$( "#range" ).slider( "option","min")+'</span>');
 		$("#range" ).find('.ui-slider-handle').eq(1).html('<span>'+$( "#range" ).slider( "option","max")+'</span>');
-		
+
+		$("#range" ).find('.ui-slider-handle').eq(0).addClass('left');
+		$("#range" ).find('.ui-slider-handle').eq(1).addClass('right');
+
 		$( "#rangefrom" ).bind("change", function(){
 			if($(this).val()*1>$( "#range" ).slider( "option","max")*1){
 				$(this).val($( "#range" ).slider( "option","max"));
@@ -389,7 +392,19 @@ function forms(){
 			if($(this).val()*1<$( "#range" ).slider( "option","min")*1){
 				$(this).val($( "#range" ).slider( "option","min"));
 			}
+			if($(this).val() > $("#range" ).slider( "values",1)){
+				// $(this).val() == $("#range" ).slider( "values",1);
+				// console.log(	$("#range" ).slider( "values",1,$(this).val()));
+				// $(this).val = $("#range" ).slider( "option","max");
+				// console.log();
+				var ss = $(this).val();
+				// console.log(ss);
+				var sss = $("#range" ).slider( "values",1);
+				console.log(sss);
+				// $("#range > .right span").html($("#range" ).slider( "values",1));
+			}
 			$("#range" ).slider( "values",0,$(this).val());
+			$("#range > .left span").html($(this).val());
 		});
 		$( "#rangeto" ).bind("change", function(){
 			if($(this).val()*1>$( "#range" ).slider( "option","max")*1){
@@ -399,10 +414,9 @@ function forms(){
 				$(this).val($( "#range" ).slider( "option","min"));
 			}
 			$("#range" ).slider( "values",1,$(this).val());
+			$("#range > .right span").html($(this).val());
 		});
-		$("#range" ).find('.ui-slider-handle').eq(0).addClass('left');
-		$("#range" ).find('.ui-slider-handle').eq(1).addClass('right');
-	}
+	}	
 	//ADDFILES
 	$('.form-addfile__input').change(function(e){
 		if($(this).val()!=''){
