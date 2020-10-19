@@ -35,13 +35,34 @@
     &__body {
         .price-filter {
             padding: 10px 0px 0px 0px;
-            input {
+
+            .price-filter__input {
                 height: 23px;
                 color: #999;
-
                 font-size: 12px;
                 font-weight: 300;
+                border: 1px solid #dadada;
+                background-color: #fff;
+                width: 65px;
+                margin: 0px 0px 0px 10px;
+                &:focus {
+                    border: 1px solid #98b3e6;
+                }
             }
+
+            span {
+                color: #999999;
+                font-size: 12px;
+                font-weight: 300;
+                // margin: 0px 10px 0px 0px;
+            }
+
+            #range {
+                cursor: pointer;
+            }
+        }
+        .price-filter-table {
+            margin: 50px 0px 0px 0px;
         }
     }
 }

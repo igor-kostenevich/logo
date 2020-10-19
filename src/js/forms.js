@@ -255,7 +255,7 @@ function forms(){
 	$.each($('input.phone'), function(index, val) {
 		$(this).attr('type','tel');
 		$(this).focus(function(){
-			$(this).inputmask('+38(999) 999-99-99',{clearIncomplete: true,clearMaskOnLostFocus: true,
+			$(this).inputmask('+38000(999) 999-99-99',{clearIncomplete: true,clearMaskOnLostFocus: true,
 				"onincomplete": function(){maskclear($(this));}
 			});
 			$(this).addClass('focus');
@@ -269,7 +269,10 @@ function forms(){
 	});
 	$.each($('input.num'), function(index, val) {
 		$(this).focus(function(){
-			$(this).inputmask('9{1,1000}',{clearIncomplete: true,placeholder:"",clearMaskOnLostFocus: true,"onincomplete": function(){maskclear($(this));}});
+			// Inputmask().mask('.digi');
+			// $(this).inputmask('9{1,1000}',{clearIncomplete: true,placeholder:"",clearMaskOnLostFocus: true,"onincomplete": function(){maskclear($(this));}});
+			// $(this).inputmask({regex: `"/{1,6}(\d)(?=(\d{3})+(?!\d))/g, '$1 '"`},);
+			$(this).inputmask('9{regex:`/{1,6}(\d)(?=(\d{3})+(?!\d))/g"`}')
 			$(this).addClass('focus');
 			$(this).parent().addClass('focus');
 			$(this).parent().removeClass('err');
@@ -279,6 +282,7 @@ function forms(){
 	$('input.num').focusout(function(event) {
 		maskclear($(this));
 	});
+	
 	//CHECK
 	// $.each($('.check'), function(index, val) {
 	// 	if($(this).find('input').prop('checked')==true){
@@ -355,6 +359,10 @@ function forms(){
 			$(this).parent().find('.quantity__input').val(n);
 		return false;
 	});
+
+	// clearIncomplete: true,clearMaskOnLostFocus: true,
+	// "onincomplete": function(){maskclear($(this));
+
 	//RANGE
 if($("#range" ).length>0){
 		$("#range" ).slider({
@@ -363,10 +371,15 @@ if($("#range" ).length>0){
 			max:  200000,
 			values: [0, 200000],
 			slide: function( event, ui ){
-				$('#rangefrom').val(ui.values[0]);
-				$('#rangeto').val(ui.values[1]);
-				$(this).find('.ui-slider-handle').eq(0).html('<span>'+ui.values[0]+'</span>');
-				$(this).find('.ui-slider-handle').eq(1).html('<span>'+ui.values[1]+'</span>');
+				var minRangeValue = ui.values[0].toLocaleString('us-Us');
+				var maxRangeValue = ui.values[1].toLocaleString('us-Us');
+
+				$('#rangefrom').val(minRangeValue);
+				$('#rangeto').val(maxRangeValue);
+
+				$(this).find('.ui-slider-handle').eq(0).html('<span>'+minRangeValue+'</span>');
+				$(this).find('.ui-slider-handle').eq(1).html('<span>'+maxRangeValue+'</span>');
+				
 			},
 			change: function( event, ui ){
 				if(ui.values[0]!=$( "#range" ).slider( "option","min") || ui.values[1]!=$( "#range" ).slider( "option","max")){
@@ -376,45 +389,68 @@ if($("#range" ).length>0){
 				}
 			}
 		});
-		$('#rangefrom').val($( "#range" ).slider( "values", 0 ));
-		$('#rangeto').val($( "#range" ).slider( "values", 1 ));
 
-	    $("#range" ).find('.ui-slider-handle').eq(0).html('<span>'+$( "#range" ).slider( "option","min")+'</span>');
-		$("#range" ).find('.ui-slider-handle').eq(1).html('<span>'+$( "#range" ).slider( "option","max")+'</span>');
+		
+		$('#rangefrom').val($( "#range" ).slider("values",0));
+		$('#rangeto').val($("#range").slider("values",1));
+
+	    $("#range" ).find('.ui-slider-handle').eq(0).html('<span>'+$("#range").slider("option","min")+'</span>');
+		$("#range" ).find('.ui-slider-handle').eq(1).html('<span>'+$("#range").slider("option","max")+'</span>');
 
 		$("#range" ).find('.ui-slider-handle').eq(0).addClass('left');
 		$("#range" ).find('.ui-slider-handle').eq(1).addClass('right');
-
-		$( "#rangefrom" ).bind("change", function(){
-			if($(this).val()*1>$( "#range" ).slider( "option","max")*1){
-				$(this).val($( "#range" ).slider( "option","max"));
-			}
-			if($(this).val()*1<$( "#range" ).slider( "option","min")*1){
+	
+		$("#rangefrom").bind("change", function(){
+			// if($(this).val() * 1 > $( "#range" ).slider( "option","max") * 1 ){
+			// 	$(this).val($( "#range" ).slider( "option","max"));
+			// }
+			// if($(this).val()*1<$( "#range" ).slider( "option","min")*1){
+			// 	$(this).val($( "#range" ).slider( "option","min"));
+			// }
+			if($(this).val().length == 0){	// 0<
 				$(this).val($( "#range" ).slider( "option","min"));
 			}
-			if($(this).val() > $("#range" ).slider( "values",1)){
-				// $(this).val() == $("#range" ).slider( "values",1);
-				// console.log(	$("#range" ).slider( "values",1,$(this).val()));
-				// $(this).val = $("#range" ).slider( "option","max");
-				// console.log();
-				var ss = $(this).val();
-				// console.log(ss);
-				var sss = $("#range" ).slider( "values",1);
-				console.log(sss);
-				// $("#range > .right span").html($("#range" ).slider( "values",1));
+			if($(this).val() > $( "#range" ).slider( "values",1)){ // min value > max value
+				$(this).val($( "#range" ).slider( "values",1));
 			}
 			$("#range" ).slider( "values",0,$(this).val());
 			$("#range > .left span").html($(this).val());
 		});
-		$( "#rangeto" ).bind("change", function(){
-			if($(this).val()*1>$( "#range" ).slider( "option","max")*1){
+		$("#rangefrom").on("blur", function(){
+			this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ');
+			$("#range > .left span").html(this.value);
+		});
+		$("#rangefrom").on("focus", function(){
+			this.value = this.value.replace(/\s/g, '');
+		});
+		$("#rangeto").bind("change", function(){
+			// if($(this).val()*1>$( "#range" ).slider( "option","max")*1){
+			// 	$(this).val($( "#range" ).slider( "option","max"));
+			// }
+			// if($(this).val()*1<$( "#range" ).slider( "option","min")*1){
+			// 	$(this).val($( "#range" ).slider( "option","min"));
+			// }
+			if($(this).val().length == 0){
 				$(this).val($( "#range" ).slider( "option","max"));
 			}
-			if($(this).val()*1<$( "#range" ).slider( "option","min")*1){
-				$(this).val($( "#range" ).slider( "option","min"));
+			if($(this).val() < $( "#range" ).slider( "values",0)){
+				$(this).val($( "#range" ).slider( "values",0));
+				// console.log(parseInt($(this).val().replace(",",".").replace(/[^0-9.]/gim, "")));
+				// console.log(typeof parseInt($(this).val()));
 			}
 			$("#range" ).slider( "values",1,$(this).val());
 			$("#range > .right span").html($(this).val());
+		});
+		$("#rangeto").on("blur", function(){
+			this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ');
+			// this.value.html($("#range > .right span").html($(this).val()));
+			$("#range > .right span").html(this.value);
+		});
+		$(window).on('load', function(){
+			$("#rangeto").triggerHandler("blur");
+		});
+		$("#rangeto").on("focus", function(){
+			this.value = this.value.replace(/\s/g, '');
 		});
 	}	
 	//ADDFILES

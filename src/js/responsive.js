@@ -118,10 +118,18 @@
 	//Сортировка объекта
 	function dynamicAdaptSort(arr) {
 		arr.sort(function (a, b) {
-			if (a.breakpoint > b.breakpoint) { return -1 } else { return 1 } //Для MobileFirst поменять
+			if (a.breakpoint > b.breakpoint) {
+				return -1
+			} else {
+				return 1
+			} //Для MobileFirst поменять
 		});
 		arr.sort(function (a, b) {
-			if (a.place > b.place) { return 1 } else { return -1 }
+			if (a.place > b.place) {
+				return 1
+			} else {
+				return -1
+			}
 		});
 	}
 	//Дополнительные сценарии адаптации
@@ -197,5 +205,4 @@
 // 	adaptive_header(w,h);
 // }
 // 	adaptive_function();
-
 

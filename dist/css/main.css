@@ -481,7 +481,6 @@ ol.counter li:before {
 
 .table {
   display: table;
-  font-size: 0;
   width: 100%;
 }
 
@@ -1672,11 +1671,33 @@ textarea.input {
   padding: 10px 0px 0px 0px;
 }
 
-.section-filter__body .price-filter input {
+.section-filter__body .price-filter .price-filter__input {
   height: 23px;
   color: #999;
   font-size: 12px;
   font-weight: 300;
+  border: 1px solid #dadada;
+  background-color: #fff;
+  width: 65px;
+  margin: 0px 0px 0px 10px;
+}
+
+.section-filter__body .price-filter .price-filter__input:focus {
+  border: 1px solid #98b3e6;
+}
+
+.section-filter__body .price-filter span {
+  color: #999999;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.section-filter__body .price-filter #range {
+  cursor: pointer;
+}
+
+.section-filter__body .price-filter-table {
+  margin: 50px 0px 0px 0px;
 }
 
 .wrapper {
