@@ -169,6 +169,7 @@
         font-family: "Play";
         color: #fff;
         text-decoration: underline;
+        text-underline-position: under; 
         min-height: 27px;
         display: inline-flex;
         justify-content: center;
@@ -378,7 +379,7 @@
         line-height: 24px;
         display: inline-block;
         color: #999999;
-        transition: color .3s ease;
+        transition: all .3s ease;
 
         span {
             border-bottom: 1px dotted;
@@ -386,10 +387,20 @@
 
         &_login {
             background: url("../../dist/img/icons/header/login.png") left no-repeat;
+            @media (min-width: 992px){
+                &:hover {
+                    background: url("../../dist/img/icons/header/login_h.png") left no-repeat;
+                }
+            }
         }
 
         &_reg {
             background: url("../../dist/img/icons/header/user.png") left no-repeat;
+            @media (min-width: 992px){
+                &:hover {
+                    background: url("../../dist/img/icons/header/user_h.png") left no-repeat;
+                }
+            }
         }
 
         &_email {
@@ -397,6 +408,12 @@
 
             span {
                 border-bottom: 1px solid;
+            }
+
+            @media (min-width: 992px){
+                &:hover {
+                    background: url("../../dist/img/icons/header/mail_h.png") left no-repeat;
+                }
             }
         }
 
@@ -441,11 +458,12 @@
 
     // .info-header__callback
     &__callback {
-        background: url("../../dist/img/icons/header/callback.png") left no-repeat;
+        background: url("../../dist/img/icons/header/tel.png") left no-repeat;
         display: inline-block;
         line-height: 20px;
         padding: 0px 0px 0px 32px;
-        color: #1ab9ce;
+        color: #999;
+        transition: all 0.3s ease;
 
         span {
             border-bottom: 1px dotted;
@@ -455,6 +473,12 @@
         @media (max-width: $md1+px) {
             background: none;
             padding: 0;
+        }
+        @media (min-width: 992px){
+            &:hover {
+                color: #1ab9ce;
+                background: url("../../dist/img/icons/header/tel_h.png") left no-repeat;
+            }
         }
     }
 
@@ -488,8 +512,9 @@
         height: 43px;
         display: inline-block;
         position: relative;
-        background: url("../../dist/img/icons/header/cart.png") 0 0 no-repeat;
-
+        border-radius: 50%;
+        background: #4da0b9 url("../../dist/img/icons/header/cart.png") center no-repeat;
+        transition: all 0.3s ease;
         span {
             padding: 0px 11px;
             border-radius: 20px;
@@ -505,6 +530,8 @@
 
             @media (max-width: $md1+px) {
                 right: -10px;
+                top: -10px;
+                padding: 0px 7px;
             }
         }
 
@@ -519,5 +546,11 @@
                 right: -5px;
             }
         }
+        
+		@media (min-width: 992px){
+			&:hover {
+				background-color: #2a93b3;
+			}
+		}
     }
 }

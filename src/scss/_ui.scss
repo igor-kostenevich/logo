@@ -1,3 +1,5 @@
+@import "_reset";
+
 //<ОСНОВНОЙ БЛОК>====================================================================================================
 .items-products {
 	display: flex;
@@ -128,7 +130,8 @@
 	&__add {
 		width: 40px;
 		height: 40px;
-		background: url("../../dist/img/cart_gray.png") 0 0 no-repeat;
+		border-radius: 50%;
+		background: #e6e6e6 url("../../dist/img/icons/header/cart.png") center no-repeat;
 	}
 
 	// .item-product__price
@@ -202,11 +205,23 @@
 
 	// .hover-item-product__cart
 	&__cart {
-		background: url("../../dist/img/cart-orange.png") 0 0 no-repeat;
+		border-radius: 50%;
+		background: #fd8424 url("../../dist/img/icons/header/cart.png") center no-repeat;
 		width: 57px;
 		height: 57px;
 		margin: 0 auto 25px auto;
 		display: block;
+		transition: all 0.3s ease;
+
+		&_catalog {
+			margin: 0;
+		}
+
+		@media (min-width: 992px) {
+			&:hover {
+				background-color: #eb7413;
+			}
+		}
 	}
 
 	// .hover-item-product__footer
@@ -229,6 +244,19 @@
 
 		&:after {
 			font-size: 14px;
+		}
+	}
+
+	// .hover-item-product__compare
+	&__compare {
+		background: url("../../dist/img/icons/compare.png") left no-repeat;
+		padding: 0px 0px 0px 33px;
+		display: inline-block;
+		line-height: 21px;
+		color: #fff;
+		span {
+			border-bottom: 1px dashed;
+			font-weight: 300;
 		}
 	}
 
@@ -291,7 +319,7 @@
 	}
 
 	&_next {
-		@media (min-width: 992px){
+		@media (min-width: 992px) {
 			&:hover {
 				transform: rotate(-180deg);
 			}
@@ -300,7 +328,8 @@
 
 	&_prev {
 		transform: rotate(-180deg);
-		@media (min-width: 992px){
+
+		@media (min-width: 992px) {
 			&:hover {
 				transform: rotate(0deg);
 			}
@@ -308,6 +337,43 @@
 	}
 }
 
+// ==================================================================================
+
+.breadcrumbs {
+	overflow: auto;
+	margin: 0px 0px 20px 0px;
+	height: 20px;
+
+	// .breadcrumbs__list
+	&__list {
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+
+		li {
+			padding: 0px 20px 0px 0px;
+			margin: 0px 10px 0px 0px;
+			background: url("../../dist/img/icons/li-arrow.png") right / 10px no-repeat;
+
+			&:last-child {
+				margin: 0px;
+				background: none;
+			}
+		}
+	}
+
+	// .breadcrumbs__link
+	&__link {
+		color: #1ab9ce;
+		text-decoration: underline;
+	}
+
+	// .breadcrumbs__item
+	&__item {
+		color: #999999;
+		font-weight: 300;
+	}
+}
 
 // ==================================================================================
 
@@ -651,6 +717,54 @@ body.ie .ibg img {
 
 .baloon-close {
 	top: 18px !important;
+}
+
+// ==================================================================================
+
+.pagging {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__arrow {
+		width: 33px;
+		height: 30px;
+		cursor: pointer;
+		background: url("../../dist/img/icons/page-nav-arrow.svg") 0 0 / 100% no-repeat;
+
+		@media (min-width: 992px) {
+			&:hover {
+				background: url("../../dist/img/icons/sl-arrow-o.svg") 0 0 / 100% no-repeat;
+			}
+		}
+
+		&:last-child {
+			transform: rotate(-180deg);
+		}
+	}
+
+	&__list {
+		display: flex;
+		margin: 0px 35px;
+
+		li {}
+	}
+
+	&__item {
+		width: 33px;
+		height: 33px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		color: #333;
+		font-weight: 900;
+
+		&.active {
+			color: #fff;
+			background-color: #fd8424;
+		}
+	}
 }
 
 //</ГОТОВЫЕ КЛАССЫ>====================================================================================================

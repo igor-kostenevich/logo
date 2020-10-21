@@ -535,7 +535,8 @@ body.lock {
 
 		.checkbox__text {
 			color: #999;
-
+			font-size: 16px;
+			line-height: calc(20 / 16);
 			&::before {
 				display: none;
 			}
@@ -584,8 +585,8 @@ body.lock {
 		counter-reset: item;
 
 		li {
+			margin: 0px 25px;
 			button {
-				margin: 0px 25px;
 				height: 55px;
 				width: 55px;
 				border-radius: 50%;
@@ -862,7 +863,7 @@ body.lock {
 
 	// .reviews-content__body
 	&__body {
-		padding: 14px 8px 14px 25px;
+		padding: 14px 8px 14px 32px;
 		position: relative;
 
 		&:before {
@@ -871,7 +872,7 @@ body.lock {
 			font-weight: 900;
 			content: '"';
 			position: absolute;
-			left: 0;
+			left: 9px;
 			top: 14px;
 			line-height: 1;
 		}

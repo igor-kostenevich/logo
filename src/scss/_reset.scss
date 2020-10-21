@@ -19,8 +19,8 @@ input,button,textarea{font-family: $fontfamily;}
 input::-ms-clear{display: none;}
 button{cursor: pointer;}
 button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none; text-decoration-skip-ink: none; text-underline-position: under; }
+a, a:visited{text-decoration: none;text-decoration-skip-ink: none;}
 a:hover{text-decoration: none;}
-ul li{list-style: none;}
+ul li{list-style: none !important;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-weight: inherit;font-size: inherit;}
