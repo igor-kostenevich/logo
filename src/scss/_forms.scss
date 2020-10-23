@@ -42,6 +42,7 @@
 	&_gray {
 		background-color: #e6e6e6;
 		color: #666;
+
 		@media (min-width: 992px) {
 			&:hover {
 				background-color: #cfcfcf;
@@ -77,7 +78,7 @@
 .select {
 	position: relative;
 	cursor: pointer;
-	
+
 	.select-title {
 		z-index: 1;
 		width: 100%;
@@ -146,17 +147,18 @@
 		&:hover {
 			color: #000;
 		}
-		@media (min-width: 992px){
+
+		@media (min-width: 992px) {
 			&:hover {
 				background-color: #dadada;
 			}
 		}
 	}
 
-	
+
 
 	&.active {
-		.select-title__arrow  {
+		.select-title__arrow {
 			transform: rotate(180deg);
 		}
 	}
@@ -167,6 +169,7 @@
 		min-width: 0;
 		border: 2px solid #f3f3f3;
 	}
+
 	.select-title__value {
 		padding: 0px 40px 0 13px;
 		font-weight: 900;
@@ -224,6 +227,7 @@ textarea.input {
 		&:checked+.checkbox__text:before {
 			border: 2px solid #009aaf;
 		}
+
 		&:checked+.checkbox__text:after {
 			content: '';
 			width: 9px;
@@ -379,25 +383,36 @@ textarea.input {
 //<QUANTITY>====================================================================================================
 .quantity {
 	position: relative;
-	width: 73px;
-	height: 47px;
-	border: 1px solid #cfcfcf;
+	flex: 1 1 120px;
+	height: 33px;
 	background-color: #ffffff;
+	display: flex;
+	align-items: center;
 }
 
+
 .quantity__input {
-	height: 45px;
-	width: 50px;
+	height: 33px;
+	width: 56px;
 	text-align: center;
-	color: #101010;
-	font-weight: 300;
+	color: #999999;
+	font-size: 16px;
+	font-weight: 900;
+	border: 2px solid #e5e5e5;
+	padding: 0px 5px;
+
+	// .quantity__input-wrapp
+	&-wrapp {
+		margin: 0px 15px;
+	}
 }
 
 .quantity__btn {
-	position: absolute;
-	top: 11px;
-	right: 15px;
+	flex: 0 0 20px;
 	cursor: pointer;
+	background: url("../../dist/img/icons/page-nav-arrow.svg") 0 0 / 100% no-repeat;
+	width: 20px;
+	height: 17px;
 
 	&:before {
 		font-size: 25px;
@@ -406,16 +421,27 @@ textarea.input {
 		color: #a9a9a9;
 	}
 
-	&:hover {
-		&:before {
-			color: #da0005;
+	// &:hover {
+	// 	&:before {
+	// 		color: #da0005;
+	// 	}
+	// }
+
+	&.up {
+		transform: rotate(180deg);
+		@media (min-width: 992px){
+			&:hover {
+				background: url("../../dist/img/icons/sl-arrow-o.svg") 0 0 / 100% no-repeat;
+			}
 		}
 	}
 
-	&.up {}
-
 	&.dwn {
-		top: 25px;
+		@media (min-width: 992px){
+			&:hover {
+				background: url("../../dist/img/icons/sl-arrow-o.svg") 0 0 / 100% no-repeat;
+			}
+		}
 	}
 }
 
@@ -431,6 +457,7 @@ textarea.input {
 		&:first-child {
 			padding-right: 15px;
 			position: relative;
+			text-align: right;
 		}
 
 		&:last-child {

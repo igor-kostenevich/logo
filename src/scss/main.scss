@@ -8,6 +8,7 @@
 @import "header";
 @import "footer";
 @import "catalog";
+@import "product";
 
 
 //<Подключаем шрифты>=======================================================================================
@@ -73,11 +74,8 @@ body.lock {
 	// .content__side
 	&__side {
 		flex: 0 0 260px;
-
-		@media (max-width: $md2+px) {
-			margin: 0px 0px 30px 0px;
-		}
-
+		margin: 0px 0px 30px 0px;
+		
 		.page-menu {
 			margin: 0px 0px 40px 0px;
 		}

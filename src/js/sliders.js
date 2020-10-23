@@ -92,6 +92,33 @@ if (document.querySelector('.brands-slider')) {
 }
 
 
+if($('.images-product')){
+	$('.images-product__mainslider').slick({
+		lazyLoad: 'ondemand',
+		dots: false,
+		arrows: false,
+		infinite: true,
+		// draggable: false,
+		// swipe: false,
+		speed: 600,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		asNavFor: '.images-product__subslider'
+	});
+
+	
+}
+$('.images-product__subslider').slick({
+	lazyLoad: 'ondemand',
+	dots: false,
+	arrows: false,
+	speed: 600,
+	infinite: true,
+	slidesToShow: 4,
+	slidesToScroll: 1,
+	asNavFor: '.images-product__mainslider',
+	focusOnSelect: true
+});
 
 
 
