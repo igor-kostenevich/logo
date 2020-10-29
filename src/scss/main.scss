@@ -3,12 +3,12 @@
 @import "_reset";
 @import "_ui";
 @import "_forms";
-@import "_popup";
 @import "_fonts";
 @import "header";
 @import "footer";
 @import "catalog";
 @import "product";
+@import "checkout";
 
 
 //<Подключаем шрифты>=======================================================================================
@@ -104,21 +104,19 @@ body.lock {
 	// .content__news
 	&__news {
 		margin: 0px 0px 75px 0px;
-
-		&:last-child {
-			margin: 0px 0px 0px 0px;
-		}
 	}
 
 	// .content__reviews
-	&__reviews {}
+	&__reviews {
+		margin: 0px 0px 75px 0px;
+	}
 
 	// .content__products
 	&__products {}
 
 	// .content__brands
 	&__brands {
-		margin: 0px 0px 32px 0px;
+		margin: 32px 0px;
 	}
 
 	// .content__text
@@ -137,13 +135,16 @@ body.lock {
 
 .page-menu {
 	position: relative;
-	background: url("../../dist/img/bg-menu.png") top repeat;
+	background: #009fb3 url("../../dist/img/bg-menu.png") top repeat;
 
 	// .page-menu__header
 	&__header {
 		display: flex;
 		align-items: center;
 		padding: 20px;
+		@media (max-width: $md4+px){
+			padding: 15px;
+		}
 	}
 
 	// .page-menu__title
@@ -155,6 +156,10 @@ body.lock {
 		font-size: 30px;
 		text-transform: uppercase;
 		letter-spacing: 0.75px;
+		@media (max-width: $md4+px){
+		   font-size: 22px;
+		   letter-spacing: 0.5px;
+		}
 	}
 
 	// .page-menu__burger
@@ -221,12 +226,13 @@ body.lock {
 	}
 
 	&__parent {
+		padding: 0px 10px 0px 0px;
 		.page-menu__link {
 			&:after {
 				content: '';
 				background: url("../../dist/img/icons/content/arrow-menu.png") 0 0 no-repeat;
 				position: absolute;
-				right: 10px;
+				right: 0px;
 				top: 50%;
 				transform: translate(0, -50%);
 				height: 14px;
@@ -539,6 +545,9 @@ body.lock {
 				display: none;
 			}
 		}
+		.checkbox__input:checked+.checkbox__text:after {
+			visibility: hidden;
+		}
 	}
 
 
@@ -623,6 +632,9 @@ body.lock {
 					}
 				}
 			}
+			@media (max-width: $md4+px){
+				margin: 0px 10px;
+			}
 		}
 	}
 }
@@ -642,6 +654,9 @@ body.lock {
 		span {
 			color: #f68038;
 			display: block;
+		}
+		@media (max-width: $md4+px){
+			font-size: 32px;
 		}
 	}
 
@@ -1014,7 +1029,7 @@ body.lock {
 	// .text-block__body
 	&__body {
 		padding: 45px 35px 15px 35px;
-		background: url("../../dist/img/bg-text.jpg") 0 0 repeat;
+		background: #009fb3 url("../../dist/img/bg-text.jpg") 0 0 repeat;
 		@media (max-width: $md2+px){
 		   padding: 25px 20px 15px 20px;
 		}

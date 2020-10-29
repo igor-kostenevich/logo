@@ -7,13 +7,14 @@
     z-index: 50;
 
     // .header__top
-    &__top {}
+    &__top {
+    }
 
     // .header__bottom
     &__bottom {}
 
     @media (max-width: $md3+px) {
-        background: #fff url("../../dist/img/bg_header.jpg") 0 -20px no-repeat;
+        background: #009fb3 url("../../dist/img/bg_header.jpg") 0 -20px no-repeat;
     }
 }
 
@@ -92,12 +93,12 @@
             height: 100%;
             width: 100%;
             left: 0;
-            top: 0;
+            top: -100%;
             overflow: auto;
             background-color: #fff;
             padding: 120px 20px 30px 20px;
             z-index: 2;
-            transition: all .3s ease 0s;
+            transition: all .5s ease 0s;
             visibility: hidden;
   
         
@@ -114,7 +115,8 @@
 
             &.active {
                 opacity: 1;
-                left: 0;
+                // left: 0;
+                top: 0;
                 display: block;
                 visibility: visible;
                 // animation: disappear .7s;
@@ -175,13 +177,11 @@
         justify-content: center;
         align-items: center;
         padding: 5px 22px;
-        transition: all .3s ease 0s;
-
+        transition: background-color .3s ease 0s;
+        border-radius: 20px;
         @media (min-width: 992px) {
             &:hover {
-                border-radius: 20px;
                 background-color: #068292;
-                ;
             }
         }
 
@@ -337,7 +337,7 @@
 }
 
 .bottom-header {
-
+    
     // .bottom-header__container
     &__container {
         display: flex;
@@ -357,6 +357,10 @@
     // .bottom-header__info
     &__info {}
 
+    @media (max-width: $md3+px){
+        background-color: #fff;
+    }
+
     @media (max-width: 640px){
         display: none;
     }
@@ -367,11 +371,12 @@
     align-items: center;
 
     li {
-        margin: 0px 54px 0px 0px;
+        margin: 0px 40px 0px 0px;
 
         @media (max-width: $mw+px) {
-            margin: 0px 54 / $mw * 100vw 0px 0px;
+            margin: 0px 40 / $mw * 100vw 0px 0px;
         }
+        
     }
 
     .actions-header__item {
@@ -530,7 +535,7 @@
 
             @media (max-width: $md1+px) {
                 right: -10px;
-                top: -10px;
+                top: -6px;
                 padding: 0px 7px;
             }
         }

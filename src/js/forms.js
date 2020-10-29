@@ -209,74 +209,11 @@ function forms() {
 			}
 		});
 	}
-	//FIELDS
-	$('input,textarea').focus(function () {
-		if ($(this).val() == $(this).attr('data-value')) {
-			$(this).addClass('focus');
-			$(this).parent().addClass('focus');
-			if ($(this).attr('data-type') == 'pass') {
-				$(this).attr('type', 'password');
-			};
-			$(this).val('');
-		};
-		removeError($(this));
-	});
-	$('input[data-value], textarea[data-value]').each(function () {
-		if (this.value == '' || this.value == $(this).attr('data-value')) {
-			this.value = $(this).attr('data-value');
-			if ($(this).hasClass('l') && $(this).parent().find('.form__label').length == 0) {
-				$(this).parent().append('<div class="form__label">' + $(this).attr('data-value') + '</div>');
-			}
-		}
-		if (this.value != $(this).attr('data-value') && this.value != '') {
-			$(this).addClass('focus');
-			$(this).parent().addClass('focus');
-			if ($(this).hasClass('l') && $(this).parent().find('.form__label').length == 0) {
-				$(this).parent().append('<div class="form__label">' + $(this).attr('data-value') + '</div>');
-			}
-		}
 
-		$(this).click(function () {
-			if (this.value == $(this).attr('data-value')) {
-				if ($(this).attr('data-type') == 'pass') {
-					$(this).attr('type', 'password');
-				};
-				this.value = '';
-			};
-		});
-		$(this).blur(function () {
-			if (this.value == '') {
-				this.value = $(this).attr('data-value');
-				$(this).removeClass('focus');
-				$(this).parent().removeClass('focus');
-				if ($(this).attr('data-type') == 'pass') {
-					$(this).attr('type', 'text');
-				};
-			};
-		});
-	});
-	$('.form-input__viewpass').click(function (event) {
-		if ($(this).hasClass('active')) {
-			$(this).parent().find('input').attr('type', 'password');
-		} else {
-			$(this).parent().find('input').attr('type', 'text');
-		}
-		$(this).toggleClass('active');
-	});
-
-	//$('textarea').autogrow({vertical: true, horizontal: false});
-
-
-	//MASKS//
-	//'+7(999) 999 9999'
-	//'+38(999) 999 9999'
-	//'+375(99)999-99-99'
-	//'a{3,1000}' только буквы минимум 3
-	//'9{3,1000}' только цифры минимум 3
 	$.each($('input.phone'), function (index, val) {
 		$(this).attr('type', 'tel');
 		$(this).focus(function () {
-			$(this).inputmask('+38000(999) 999-99-99', {
+			$(this).inputmask('+8 (999) 999-99-99', {
 				clearIncomplete: true,
 				clearMaskOnLostFocus: true,
 				"onincomplete": function () {
@@ -292,42 +229,6 @@ function forms() {
 	$('input.phone').focusout(function (event) {
 		maskclear($(this));
 	});
-	$.each($('input.num'), function (index, val) {
-		$(this).focus(function () {
-			// Inputmask().mask('.digi');
-			// $(this).inputmask('9{1,1000}',{clearIncomplete: true,placeholder:"",clearMaskOnLostFocus: true,"onincomplete": function(){maskclear($(this));}});
-			// $(this).inputmask({regex: `"/{1,6}(\d)(?=(\d{3})+(?!\d))/g, '$1 '"`},);
-			$(this).inputmask('9{regex:`/{1,6}(\d)(?=(\d{3})+(?!\d))/g"`}')
-			$(this).addClass('focus');
-			$(this).parent().addClass('focus');
-			$(this).parent().removeClass('err');
-			$(this).removeClass('err');
-		});
-	});
-	$('input.num').focusout(function (event) {
-		maskclear($(this));
-	});
-
-	//CHECK
-	// $.each($('.check'), function(index, val) {
-	// 	if($(this).find('input').prop('checked')==true){
-	// 		$(this).addClass('active');
-	// 	}
-	// });
-	// $('body').off('click','.check',function(event){});
-	// $('body').on('click','.check',function(event){
-	// 	if(!$(this).hasClass('disable')){
-	// 			var target = $(event.target);
-	// 		if (!target.is("a")){
-	// 				$(this).toggleClass('active');
-	// 			if($(this).hasClass('active')){
-	// 				$(this).find('input').prop('checked', true);
-	// 			}else{
-	// 				$(this).find('input').prop('checked', false);
-	// 			}
-	// 		}
-	// 	}
-	// });
 
 	//OPTION
 	$.each($('.option.active'), function (index, val) {
@@ -343,40 +244,7 @@ function forms() {
 			$(this).children('input').prop('checked', true);
 		}
 	});
-	//RATING
-	$('.rating.edit .star').hover(function () {
-		var block = $(this).parents('.rating');
-		block.find('.rating__activeline').css({
-			width: '0%'
-		});
-		var ind = $(this).index() + 1;
-		var linew = ind / block.find('.star').length * 100;
-		setrating(block, linew);
-	}, function () {
-		var block = $(this).parents('.rating');
-		block.find('.star').removeClass('active');
-		var ind = block.find('input').val();
-		var linew = ind / block.find('.star').length * 100;
-		setrating(block, linew);
-	});
-	$('.rating.edit .star').click(function (event) {
-		var block = $(this).parents('.rating');
-		var re = $(this).index() + 1;
-		block.find('input').val(re);
-		var linew = re / block.find('.star').length * 100;
-		setrating(block, linew);
-	});
-	$.each($('.rating'), function (index, val) {
-		var ind = $(this).find('input').val();
-		var linew = ind / $(this).parent().find('.star').length * 100;
-		setrating($(this), linew);
-	});
 
-	function setrating(th, val) {
-		th.find('.rating__activeline').css({
-			width: val + '%'
-		});
-	}
 	//QUANTITY
 	$('.quantity__btn').click(function (event) {
 		var n = parseInt($(this).parent().find('.quantity__input').val());
@@ -387,26 +255,22 @@ function forms() {
 			}
 		} else {
 			n = n + 1;
-			if (n == undefined || n == null || isNaN(n)){
+			if (n == undefined || n == null || isNaN(n)) {
 				n = 1;
 			}
 		}
-		// $('.quantity__input').on('blur', function(){
-			// if($('.quantity__input').length < 0){
-			// 	console.log('qweqwe');
-			// }
-			
-		// });
+
 		$(this).parent().find('.quantity__input').val(n);
 		return false;
 	});
 
-	$('.quantity__input').blur(function(){
-		if($('.quantity__input').val().length == 0){
+	$('.quantity__input').blur(function () {
+		if ($('.quantity__input').val().length == 0) {
 			$('.quantity__input').val(1);
 		}
-		
 	});
+	
+	// =======================================================
 
 	$('.numeric').on("change keyup input click", function () {
 		if (this.value.match(/[^0-9]/g)) {
@@ -414,10 +278,11 @@ function forms() {
 		};
 	});
 
-	// clearIncomplete: true,clearMaskOnLostFocus: true,
-	// "onincomplete": function(){maskclear($(this));
-
-
+	$('.literal').on("change keyup input click", function () {
+		if (this.value.match(/[^a-zA-Zа-яА-я]/g)) {
+			this.value = this.value.replace(/[^a-zA-Zа-яА-я]/g, "");
+		};
+	});
 
 	$('.filter').keypress(function (e) {
 		if (e.which == 13 || e.keyCode == 13) {
@@ -452,7 +317,6 @@ function forms() {
 			}
 		});
 
-
 		$('#rangefrom').val($("#range").slider("values", 0));
 		$('#rangeto').val($("#range").slider("values", 1));
 
@@ -462,104 +326,75 @@ function forms() {
 		$("#range").find('.ui-slider-handle').eq(0).addClass('left');
 		$("#range").find('.ui-slider-handle').eq(1).addClass('right');
 
-		$("#rangefrom").bind("change", function (e) {
-			// if ($(this).val() * 1 > $("#range").slider("option", "max") * 1) {
-			// 	$(this).val($("#range").slider("option", "max"));
-			// }
-			// if ($(this).val() * 1 < $("#range").slider("option", "min") * 1) {
-			// 	$(this).val($("#range").slider("option", "min"));
-			// }
-			if ($(this).val().length == 0) { // 0<
-				$(this).val($("#range").slider("option", "min"));
-			}
-			if ($(this).val() > $("#range").slider("values", 1)) { // min value > max value
-				$(this).val($("#range").slider("values", 1));
-			}
-			$("#range").slider("values", 0, $(this).val());
-			$("#range > .left span").html($(this).val());
-		});
-		$('#rangefrom').keypress(function (e) {
-			if (e.which == 13 || e.keyCode == 13) {
-				$("#rangefrom").blur();
+
+		$("#rangefrom").on({
+			change: function(){
+				if ($(this).val().length == 0) { // 0<
+					$(this).val($("#range").slider("option", "min"));
+				}
+				if ($(this).val() > $("#range").slider("values", 1)) { // min value > max value
+					$(this).val($("#range").slider("values", 1));
+				}
+				$("#range").slider("values", 0, $(this).val());
+				$("#range > .left span").html($(this).val());
+			},
+			focus: function () {
+				this.value = '';
+			},
+			blur: function () {
+				if (this.value == '') {
+					this.value = $("#range").slider("values", 0);
+				}
+				this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ');
+				$("#range > .left span").html(this.value);
+			},
+			keypress: function(e){
+				if (e.which == 13 || e.keyCode == 13) {
+					$("#rangefrom").blur();
+				}
 			}
 		});
 
-		$("#rangefrom").on("blur", function () {
-			if (this.value == '') {
-				this.value = $("#range").slider("values", 0);
+		$("#rangeto").on({
+			change: function(){
+				if ($(this).val() * 1 > $("#range").slider("option", "max") * 1) {
+					$(this).val($("#range").slider("option", "max"));
+				}
+				if ($(this).val() * 1 < $("#range").slider("option", "min") * 1) {
+					$(this).val($("#range").slider("option", "min"));
+				}
+				if ($(this).val().length == 0) {
+					$(this).val($("#range").slider("option", "max"));
+				}
+				if ($(this).val() < $("#range").slider("values", 0)) {
+					$(this).val($("#range").slider("values", 0));
+				}
+				$("#range").slider("values", 1, $(this).val());
+				$("#range > .right span").html($(this).val());
+			},
+			focus: function () {
+				this.value = '';
+			},
+			blur: function () {
+				if (this.value == '') {
+					this.value = $("#range").slider("values", 1);
+				}
+				this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ');
+				$("#range > .right span").html(this.value);
+			},
+			keypress: function(e){
+				if (e.which == 13 || e.keyCode == 13) {
+					$("#rangeto").blur();
+				}
 			}
-			this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ');
-			$("#range > .left span").html(this.value);
 		});
-	
-		$("#rangefrom").on("focus", function () {
-			
-			// this.value = this.value.replace(/\s/g, '');
-			this.value = '';
-		});
-		$(document).on("change keyup input click", "input[type='text']", function () {
-			if (this.value.match(/[^0-9]/g)) {
-				this.value = this.value.replace(/[^0-9]/g, "");
-			};
 
-		});
-		$("#rangeto").bind("change", function (e) {
-			if ($(this).val() * 1 > $("#range").slider("option", "max") * 1) {
-				$(this).val($("#range").slider("option", "max"));
-			}
-			if ($(this).val() * 1 < $("#range").slider("option", "min") * 1) {
-				$(this).val($("#range").slider("option", "min"));
-			}
-			// e.preventDefault();
-			if ($(this).val().length == 0) {
-				$(this).val($("#range").slider("option", "max"));
-			}
-			if ($(this).val() < $("#range").slider("values", 0)) {
-				$(this).val($("#range").slider("values", 0));
-				// console.log(parseInt($(this).val().replace(",",".").replace(/[^0-9.]/gim, "")));
-				// console.log(typeof parseInt($(this).val()));
-			}
-			$("#range").slider("values", 1, $(this).val());
-			$("#range > .right span").html($(this).val());
-		});
-		$('#rangeto').keypress(function (e) {
-			if (e.which == 13 || e.keyCode == 13) {
-				$("#rangeto").blur();
-			}
-		});
-		$("#rangeto").on("blur", function () {
-			if (this.value == '') {
-				this.value = $("#range").slider("values", 1);
-			}
-			this.value = this.value.replace(/[^\d]/g, '').replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ');
-			$("#range > .right span").html(this.value);
-		});
 		$(window).on('load', function () {
 			$("#rangeto").triggerHandler("blur");
 		});
-		$("#rangeto").on("focus", function () {
-			// this.value = this.value.replace(/\s/g, '');
-			// console.log(this.value);
-			this.value = '';
-		});
 	}
-
-
-	//ADDFILES
-	$('.form-addfile__input').change(function (e) {
-		if ($(this).val() != '') {
-			var ts = $(this);
-			ts.parents('.form-addfile').find('ul.form-addfile-list').html('');
-			$.each(e.target.files, function (index, val) {
-				if (ts.parents('.form-addfile').find('ul.form-addfile-list>li:contains("' + e.target.files[index].name + '")').length == 0) {
-					ts.parents('.form-addfile').find('ul.form-addfile-list').append('<li>' + e.target.files[index].name + '</li>');
-				}
-			});
-		}
-	});
 }
 forms();
-
 
 
 function digi(str) {
@@ -608,46 +443,16 @@ function formValidate(input) {
 			removeError(input);
 		}
 	}
-	// if(input.attr('type')=='checkbox'){
-	// 	if(input.prop('checked') == true){
-	// 		input.removeClass('err').parent().removeClass('err');
-	// 	}else{
-	// 		er++;
-	// 		input.addClass('err').parent().addClass('err');
-	// 	}
-	// }
+
 	if (input.hasClass('name')) {
 		if (!(/^[А-Яа-яa-zA-Z-]+( [А-Яа-яa-zA-Z-]+)$/.test(input.val()))) {
 			er++;
 			addError(input);
 		}
 	}
-	if (input.hasClass('pass-2')) {
-		if (form.find('.pass-1').val() != form.find('.pass-2').val()) {
-			addError(input);
-		} else {
-			removeError(input);
-		}
-	}
 	return er;
 }
 
-function formLoad() {
-	$('.popup').hide();
-	$('.popup-message-body').hide();
-	$('.popup-message .popup-body').append('<div class="popup-loading"><div class="popup-loading__title">Идет загрузка...</div><div class="popup-loading__icon"></div></div>');
-	$('.popup-message').addClass('active').fadeIn(300);
-}
-
-function showMessageByClass(ms) {
-	$('.popup').hide();
-	popupOpen('message.' + ms, '');
-}
-
-function showMessage(html) {
-	$('.popup-loading').remove();
-	$('.popup-message-body').show().html(html);
-}
 
 function clearForm(form) {
 	$.each(form.find('.input'), function (index, val) {
@@ -682,20 +487,6 @@ function addError(input) {
 		input.parents('.select-block').parent().addClass('err');
 		input.parents('.select-block').find('.select').addClass('err');
 	}
-}
-
-function addErrorByName(form, input__name, error_text) {
-	var input = form.find('[name="' + input__name + '"]');
-	input.attr('data-error', error_text);
-	addError(input);
-}
-
-function addFormError(form, error_text) {
-	form.find('.form__generalerror').show().html(error_text);
-}
-
-function removeFormError(form) {
-	form.find('.form__generalerror').hide().html('');
 }
 
 function removeError(input) {
@@ -739,84 +530,4 @@ function searchselectreset() {
 			block.find('input.select-title__value').attr('data-value', select.find('option[selected="selected"]').html());
 		}
 	});
-}
-
-
-function form_validate_input(input) {
-	let error = 0;
-	let input_g_value = input.getAttribute('data-value');
-
-	if (input.getAttribute("name") == "email" || input.classList.contains("_email")) {
-		if (input.value != input_g_value) {
-			let em = input.value.replace(" ", "");
-			input.value = em;
-		}
-		if (email_test(input) || input.value == input_g_value) {
-			form_add_error(input);
-			error++;
-		} else {
-			form_remove_error(input);
-		}
-	} else if (input.getAttribute("type") == "checkbox" && input.checked == false) {
-		form_add_error(input);
-		error++;
-	} else {
-		if (input.value == '' || input.value == input_g_value) {
-			form_add_error(input);
-			error++;
-		} else {
-			form_remove_error(input);
-		}
-	}
-	return error;
-}
-
-function form_add_error(input) {
-	input.classList.add('_error');
-	input.parentElement.classList.add('_error');
-
-	let input_error = input.parentElement.querySelector('.form__error');
-	if (input_error) {
-		input.parentElement.removeChild(input_error);
-	}
-	let input_error_text = input.getAttribute('data-error');
-	if (input_error_text && input_error_text != '') {
-		input.parentElement.insertAdjacentHTML('beforeend', '<div class="form__error">' + input_error_text + '</div>');
-	}
-}
-
-function form_remove_error(input) {
-	input.classList.remove('_error');
-	input.parentElement.classList.remove('_error');
-
-	let input_error = input.parentElement.querySelector('.form__error');
-	if (input_error) {
-		input.parentElement.removeChild(input_error);
-	}
-}
-
-function form_clean(form) {
-	let inputs = form.querySelectorAll('input,textarea');
-	for (let index = 0; index < inputs.length; index++) {
-		const el = inputs[index];
-		el.parentElement.classList.remove('_focus');
-		el.classList.remove('_focus');
-		el.value = el.getAttribute('data-value');
-	}
-	let checkboxes = form.querySelectorAll('.checkbox__input');
-	if (checkboxes.length > 0) {
-		for (let index = 0; index < checkboxes.length; index++) {
-			const checkbox = checkboxes[index];
-			checkbox.checked = false;
-		}
-	}
-	let selects = form.querySelectorAll('select');
-	if (selects.length > 0) {
-		for (let index = 0; index < selects.length; index++) {
-			const select = selects[index];
-			const select_default_value = select.getAttribute('data-default');
-			select.value = select_default_value;
-			select_item(select);
-		}
-	}
 }
