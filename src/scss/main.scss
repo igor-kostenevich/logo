@@ -560,9 +560,14 @@ body.lock {
 // MAINSLIDER ========================================================
 
 .mainslider {
-
+	// visibility: hidden;
 	// .mainslider__body
-	&__body {}
+	&__body {
+		visibility: hidden;
+		&.slick-initialized {
+			visibility: visible;
+		}
+	}
 
 	// .mainslider__slide
 	&__slide {

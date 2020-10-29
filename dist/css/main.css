@@ -2959,6 +2959,14 @@ body.lock {
   visibility: hidden;
 }
 
+.mainslider__body {
+  visibility: hidden;
+}
+
+.mainslider__body.slick-initialized {
+  visibility: visible;
+}
+
 .mainslider__slide {
   position: relative;
 }
